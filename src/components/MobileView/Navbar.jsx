@@ -29,7 +29,7 @@ const CustomNavbar = () => {
 
   return (
     <>
-    <div className={`relative flex items-center justify-between p-2 bg-background border-2 ${theme === "light" ? "border-blue-400 shadow-[0_0_20px_rgba(59,130,246,1),_0_0_30px_rgba(59,130,246,0.5)]" : "border-green-400 shadow-[0_0_20px_rgba(34,197,94,1),_0_0_30px_rgba(34,197,94,0.5)]"} m-8 rounded-full`}>
+    <div className={`relative flex items-center justify-between px-4 py-2 bg-background border-2 ${theme === "light" ? "border-blue-400 shadow-[0_0_20px_rgba(59,130,246,1),_0_0_30px_rgba(59,130,246,0.5)]" : "border-green-400 shadow-[0_0_20px_rgba(34,197,94,1),_0_0_30px_rgba(34,197,94,0.5)]"} mx-4 my-8 rounded-full`}>
       <div className="flex items-center space-x-2">
         <img src={img} alt="Logo" className="w-8 h-8" />
         <span className="font-bold text-lg">JobsGuru</span>
