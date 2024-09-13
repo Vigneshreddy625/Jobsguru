@@ -14,6 +14,7 @@ const CustomNavbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSearchShow(false);
   };
 
   const toggleDropdown = () => setDropDownOpen(!dropDownOpen);
@@ -27,6 +28,7 @@ const CustomNavbar = () => {
   const memoizedMenuItems = useMemo(() => menuItems, [menuItems]);
 
   return (
+    <>
     <div className={`relative flex items-center justify-between px-4 py-2 bg-background border-2 ${theme === "light" ? "border-blue-400 shadow-[0_0_20px_rgba(59,130,246,1),_0_0_30px_rgba(59,130,246,0.5)]" : "border-green-400 shadow-[0_0_20px_rgba(34,197,94,1),_0_0_30px_rgba(34,197,94,0.5)]"} m-8 rounded-full`}>
       <div className="flex items-center space-x-2">
         <img src={img} alt="Logo" className="w-6 h-6" />
@@ -34,11 +36,43 @@ const CustomNavbar = () => {
       </div>
       <div className="flex items-center">
         <div className={`p-2 box-border ${searchShow ? "border" : ""} rounded-lg`}>
+            {!searchShow ? (
             <SearchIcon 
               className="cursor-pointer w-6 h-6" 
               aria-label="Search" 
               onClick={() => setSearchShow(true)}
             />
+            ):
+            (
+                <XIcon 
+              className="cursor-pointer w-6 h-6" 
+              aria-label="Search" 
+              onClick={() => setSearchShow(false)}
+            />
+            )
+        }
+            {searchShow && ( 
+                <AnimatePresence>
+        <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        className={`absolute top-16 right-0 w-full p-2 overflow-hidden z-50`}>
+            <section className={`relative flex w-full`}>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search..."
+                className={`w-full bg-background p-2 ${theme === "light" ? "bg-gray-900 text-white" : "bg-white text-black"} rounded-full pl-6 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                aria-label="Search"
+              />
+              <SearchIcon onClick={handleSubmit} className={`absolute right-4 top-1/2 transform -translate-y-1/2 ${theme === "light" ? "text-white" : "text-black"}`} />
+            </section>
+        </motion.div>
+        </AnimatePresence>
+      )}
         </div>
         <div className="">
           <Button
@@ -86,6 +120,7 @@ const CustomNavbar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
