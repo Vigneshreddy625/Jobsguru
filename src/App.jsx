@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar"
 import Header from "./components/Header"
 import { ContextProvider } from "./context/UseContext"
 import CustomNavbar from "./components/MobileView/Navbar"
+import Layout from "./components/MobileView/Layout"
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Header/>
       </div>
       <div className="lg:hidden">
-        <CustomNavbar/>
+        <Layout/>
       </div>
       </ContextProvider>
     </ThemeProvider>
