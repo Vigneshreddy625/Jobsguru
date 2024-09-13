@@ -14,7 +14,6 @@ const CustomNavbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchShow(false);
   };
 
   const toggleDropdown = () => setDropDownOpen(!dropDownOpen);
@@ -40,7 +39,7 @@ const CustomNavbar = () => {
               type="text" 
               id="search" 
               placeholder="Search..." 
-              className={`transition-all duration-300 ${searchShow ? "block" : "hidden"} bg-background focus:outline-none`} 
+              className={`transition-all duration-300 bg-background focus:outline-none`} 
             />
             <SearchIcon 
               className="cursor-pointer w-6 h-6" 
