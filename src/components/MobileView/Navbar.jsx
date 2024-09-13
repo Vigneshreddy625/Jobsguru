@@ -34,20 +34,11 @@ const CustomNavbar = () => {
       </div>
       <div className="flex items-center">
         <div className={`p-2 box-border ${searchShow ? "border" : ""} rounded-lg`}>
-          <form className='flex' onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              id="search" 
-              placeholder="Search..." 
-              className={`transition-all duration-300 bg-background focus:outline-none`} 
-            />
             <SearchIcon 
               className="cursor-pointer w-6 h-6" 
-              onMouseEnter={() => setSearchShow(true)} 
               aria-label="Search" 
-              onClick={handleSubmit}
+              onClick={() => setSearchShow(true)}
             />
-          </form>
         </div>
         <div className="">
           <Button
