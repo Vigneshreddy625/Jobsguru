@@ -6,10 +6,12 @@ import { ContextProvider } from "./context/UseContext"
 import CustomNavbar from "./components/MobileView/Navbar"
 import Layout from "./components/MobileView/Layout"
 import Routing from "./components/MobileView/Routing"
+import { AuthProvider } from "./authContext/useAuth"
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <AuthProvider>
       <ContextProvider>
         <div className="hidden lg:block">
       <Navbar/>
@@ -19,6 +21,7 @@ function App() {
         <Routing/>
       </div>
       </ContextProvider>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

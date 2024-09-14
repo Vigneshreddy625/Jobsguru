@@ -14,6 +14,7 @@ import {
   Mail,
   FilterIcon,
   UserCircleIcon,
+  LogOutIcon, 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ToggleMode from "@/components/Darkmode/ToggleMode";
@@ -21,12 +22,15 @@ import { useTheme } from "@/components/Darkmode/Theme-provider";
 import img from "/vite.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import { MyContext } from "../../context/UseContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/authContext/useAuth";
 
 const CustomNavbar = () => {
   const [searchShow, setSearchShow] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
+  const { isAuthenticated, logout } = useAuth(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,14 +41,19 @@ const CustomNavbar = () => {
 
   const { showFilter, setShowFilter } = useContext(MyContext);
 
-  const menuItems = [
-    { icon: Home, text: "Home", link:"home" },
-    { icon: Info, text: "About", link:"about" },
-    { icon: Mail, text: "Contact", link:"contact" },
-    { icon: UserCircleIcon, text: "Admin", link:"home" },
-  ];
+  const menuItems = useMemo(() => [
+    { icon: Home, text: "Home", link: "/home" },
+    { icon: Info, text: "About", link: "/about" },
+    { icon: Mail, text: "Contact", link: "/contact" },
+    ...(isAuthenticated
+      ? [{ icon: UserCircleIcon, text: "Admin", link: "/admin" }] 
+      : [{ icon: UserCircleIcon, text: "Login", link: "/login" }]), 
+  ], [isAuthenticated]);
 
-  const memoizedMenuItems = useMemo(() => menuItems, [menuItems]);
+  const handleLogout = () => {
+    logout(); 
+    navigate('/'); 
+  };
 
   return (
     <>
@@ -163,7 +172,7 @@ const CustomNavbar = () => {
                 >
                   <NavigationMenu className="w-full">
                     <NavigationMenuList className="flex flex-col p-2 space-y-1">
-                      {memoizedMenuItems.map((item, index) => (
+                      {menuItems.map((item, index) => (
                         <NavigationMenuItem key={index}>
                           <NavigationMenuLink className="flex items-center px-4 py-2 hover:bg-accent rounded-md transition-colors duration-200">
                             <item.icon className="w-5 h-5 mr-3" />
@@ -171,6 +180,18 @@ const CustomNavbar = () => {
                           </NavigationMenuLink>
                         </NavigationMenuItem>
                       ))}
+
+                      {isAuthenticated && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            className="flex items-center px-4 py-2 hover:bg-accent rounded-md transition-colors duration-200 cursor-pointer"
+                            onClick={handleLogout} 
+                          >
+                            <LogOutIcon className="w-5 h-5 mr-3" />
+                            Logout
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
                     </NavigationMenuList>
                   </NavigationMenu>
                   <div className="p-4 border-t border-border">
