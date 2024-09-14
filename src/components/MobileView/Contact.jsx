@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -18,7 +18,7 @@ import emailjs from '@emailjs/browser'
 
 const ContactForm = () => {
   const { theme } = useTheme();
-  const [successMsg, setSuccessMsg] = useState("")
+  const{reset} = useForm();
   
   const form = useForm({
     defaultValues: {
@@ -39,13 +39,15 @@ const ContactForm = () => {
       })
       .then(
         () => {
-          reset();
           alert("SUCCESS!");
+          
         },
         (error) => {
           console.log('FAILED...', error.text);
         },
       );
+
+      reset();
   };
 
   return (

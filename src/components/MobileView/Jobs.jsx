@@ -57,7 +57,7 @@ function Jobs() {
   return (
     <div className="space-y-6">
       {jobData.map((job) => (
-        <Card key={job.id} className={`overflow-hidden transition-shadow duration-300 hover:shadow-lg border-2 ${
+        <Card key={job.id} className={`overflow-hidden transition-shadow duration-300  border-2 ${
           theme === "light"
             ? "border-blue-400 shadow-[0_0_10px_rgba(59,130,246,1),_0_0_20px_rgba(59,130,246,0.5)]"
             : "border-green-400 shadow-[0_0_10px_rgba(34,197,94,1),_0_0_20px_rgba(34,197,94,0.5)]"
