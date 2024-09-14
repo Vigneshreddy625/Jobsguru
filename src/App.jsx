@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import { ContextProvider } from "./context/UseContext"
 import CustomNavbar from "./components/MobileView/Navbar"
 import Layout from "./components/MobileView/Layout"
+import Routing from "./components/MobileView/Routing"
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Header/>
       </div>
       <div className="lg:hidden">
-        <Layout/>
+        <Routing/>
       </div>
       </ContextProvider>
     </ThemeProvider>
