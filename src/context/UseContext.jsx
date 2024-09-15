@@ -3,9 +3,9 @@ import React, {createContext, useState} from "react";
 export const MyContext = createContext();
 
 export const ContextProvider = ({children}) => {
-    const [jobtype, setJobtype] = useState("Internships");
-    const [sortBy, setSortBy] = useState("Sort By");
-    const [location, setLocation] = useState("Remote");
+    const [jobtype, setJobtype] = useState("Any");
+    const [sortBy, setSortBy] = useState("Any");
+    const [location, setLocation] = useState("Any");
     const [showFilter, setShowFilter] = useState(false)
 
     return(

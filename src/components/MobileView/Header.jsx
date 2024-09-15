@@ -41,10 +41,10 @@ function Header() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem onClick={() => handleJobTypeClick("Internships")}>
+        <DropdownMenuItem onClick={() => handleJobTypeClick("Internship")}>
           Internships
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleJobTypeClick("Full-time")}>
+        <DropdownMenuItem onClick={() => handleJobTypeClick("Full time")}>
           Full-time
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleJobTypeClick("Contract")}>
